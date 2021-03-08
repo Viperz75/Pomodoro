@@ -7,7 +7,7 @@ RED = "#e7305b"
 GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 FONT_NAME = "Courier New"
-WORK_MIN = 1
+WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 reps = 0
@@ -55,6 +55,11 @@ def start_timer():
     else:
         count_down(work_sec)
         timer_label.config(text="Work", fg=GREEN)
+        window.attributes('-topmost', True)
+        window.after_idle(window.attributes, '-topmost', False)
+        window.iconify()
+        window.update()
+        window.deiconify()
 
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
@@ -82,7 +87,7 @@ def count_down(count):
 window = Tk()
 window.title("Pomodoro")
 window.config(padx=50, pady=30, bg=YELLOW)
-window.iconbitmap("icon.ico")
+window.iconbitmap('icon.ico')
 window.resizable(0, 0)
 
 # Label
